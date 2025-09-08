@@ -118,7 +118,23 @@
         }
         
 
+        .banner {
+            position:fixed;
+            top:0;
+            left:0;
+            text-align:center;
+            width:100%;
+            background:red;
+            color:white;
+            padding:10px;
+            font-size:20px;
+            font-weight:bold;
+            overflow:hidden;
+            height:25px;
+            z-index: index 1000;
 
+
+        }
 
 
 
@@ -129,6 +145,11 @@
     </style>
 </head>
 <body>
+    
+    <div class= "banner">
+       <strong> FUCK SOUNDCLOUD MOVED TO BANDCAMP</strong>
+            </div>
+            
     <div class="container">
         <img src="dog-eat.gif" alt=" " class="profile-pic">
         <h1>aex. szawrsfdg</h1>
@@ -136,7 +157,7 @@
       
         <div class="button-container">
          
-             <a href="https://soundcloud.com/longwert"
+             <a href="https://www.youtube.com/watch?v=Q0U9p-H-ews"
               class="circle-button"> <img src="soundcloud.png" class="icon" alt=SoundCloud></a>
                    
               <a href="https://steamcommunity.com/id/longwert"
@@ -179,14 +200,14 @@
     
     <div class="cursor"></div>
     <script> 
-    const cursor=document.querySelector('.cursor'), ;
+    const cursor=document.querySelector('.cursor') ;
 
     document.addeventlistener('mousemove', (e) => {
         cursor.style.left = `${e.pageX - cursor.offsetWidth / 2}px`;
         cursor.style.top = `${e.pageY - cursor.offsetHeight / 2}px`;
     
 
-    function createFlame(e.pageX, e.pageY);
+    function createFlame(e,pageX, e,pageY);
         });
         flame.style.left = `${x - 5}px`;
         flame.style.top = `${y - 5}px`; 
