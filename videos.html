@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vido</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Plus+Jakarta+Sans:wght@700&display=swap');
+
+        body {
+            background-color: black;
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+            animation: moveTitle 0.0001s infinite alternate;
+        }
+
+        @keyframes moveTitle {
+            from { transform: rotate(-5deg); }
+            to { transform: rotate(5deg); }
+        }
+
+        /* animations stolen from homepage again*/
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes rainbow {
+            0% { color: #ff0000; }
+            14% { color: #ff7f00; }
+            28% { color: #ffff00; }
+            42% { color: #00ff00; }
+            57% { color: #0000ff; }
+            71% { color: #4b0082; }
+            85% { color: #9400d3; }
+            100% { color: #ff0000; }
+        }
+
+        .player-container {
+            background-color: #111;
+            width: 90%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 30px;
+        }
+
+        .video-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .video-item {
+            background-color: #333;
+            margin: 10px;
+            padding: 10px;
+            cursor: pointer;
+            border: 2px solid rgb(255, 0, 0);
+        }
+
+        .video-item:hover {
+            background-color: #555;
+            transform: scale(1.05);
+        }
+
+        video {
+            width: 100%;
+            margin-top: 20px;
+            border: 2px solid white;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 50px;
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            font-size: 1.5em;
+            padding: 10px;
+        }
+        
+        .back-link:hover {
+            animation: spin 0.5s linear infinite;
+            /* , rainbow 0.1s infinite; */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>videos</h1>
+    <marquee scrollamount="15" style="color: rgb(255, 0, 0); font-size: 20px;">longwert.com longwert.com longwert.com longwert.com longwert.com longwert.com</marquee>
+
+    <div class="player-container">
+        <h2>watching:</h2>
+        <h3 id="current-video">nothing</h3>
+        
+        <video id="video-player" controls>
+            Your browser does not support the video element.
+        </video>
+
+        <ul class="video-list" id="playlist-element">
+            <!--vvideos will be injected here by JS -->
+        </ul>
+    </div>
+    
+    <br>
+    <a href="index.html" class="back-link">take me back home</a>
+
+    <script>
+        const player = document.getElementById('video-player');
+        const currentVideoLabel = document.getElementById('current-video');
+        const playlistElement = document.getElementById('playlist-element');
+
+        // TO ADD MORE VIDEOS: literally just add the filename here and put the file in the videos/ folder
+        const videos = [
+            "netaNYAhu.mp4",
+            "BOOOOOOORING.mp4",
+            "test.mp4",
+            "damn.mp4",
+            "bradyhome edity.mp4",
+            "(•﹏•;).mp4",
+            "enrughs.mp4",
+            "CS_S raw video..mp4"
+        ];
+
+        videos.forEach(filename => {
+            const li = document.createElement('li');
+            li.className = 'video-item';
+            li.innerText = filename; 
+            li.onclick = () => playVideo('videos/' + filename, filename);
+            playlistElement.appendChild(li);
+        });
+
+        function playVideo(src, name) {
+            player.src = src;
+            currentVideoLabel.innerText = name;
+            player.play();
+            document.body.style.backgroundColor = generateRandomColor();
+        }
+
+        function generateRandomColor() {
+             setTimeout(() => { document.body.style.backgroundColor = "black"; }, 100);
+             return '#' + Math.floor(Math.random()*16777215).toString(16);
+        }
+        
+        console.log("the console");
+    </script>
+</body>
+</html>

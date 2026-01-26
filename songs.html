@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>musica</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Plus+Jakarta+Sans:wght@700&display=swap');
+
+        body {
+            background-color: black;
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+            animation: moveTitle 0.0001s infinite alternate;
+        }
+
+        @keyframes moveTitle {
+            from { transform: rotate(-5deg); }
+            to { transform: rotate(5deg); }
+        }
+
+        /* animations stolen from homepage cause im lazy lol*/
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes rainbow {
+            0% { color: #ff0000; }
+            14% { color: #ff7f00; }
+            28% { color: #ffff00; }
+            42% { color: #00ff00; }
+            57% { color: #0000ff; }
+            71% { color: #4b0082; }
+            85% { color: #9400d3; }
+            100% { color: #ff0000; }
+        }
+
+        .player-container {
+            background-color: #111;
+            width: 80%;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 30px;
+        }
+
+        .song-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .song-item {
+            background-color: #333;
+            margin: 10px;
+            padding: 10px;
+            cursor: pointer;
+            border: 2px solid rgb(255, 0, 0);
+        }
+
+        .song-item:hover {
+            background-color: #555;
+            transform: scale(1.05);
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 20px;
+            filter: invert(1);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 50px;
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            font-size: 1.5em;
+            padding: 10px;
+        }
+        
+        .back-link:hover {
+            animation: spin 0.5s linear infinite;
+            /* , rainbow 0.1s infinite; */
+            border-color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>music</h1>
+    <marquee scrollamount="15" style="color: rgb(255, 0, 0); font-size: 20px;">i love hot anime girls loveeeeee it</marquee>
+
+    <div class="player-container">
+        <h2>playing:</h2>
+        <h3 id="current-song">nothing</h3>
+        
+        <audio id="audio-player" controls>
+            Your browser does not support the audio element.
+        </audio>
+
+        <ul class="song-list" id="playlist-element">
+            <!-- songs will be injected here by JS -->
+        </ul>
+    </div>
+
+    <img src="dog.gif" alt="hi" style="width: 150px; margin-top: 20px;">
+    
+    <br>
+    <a href="index.html" class="back-link">bring me back home</a>
+
+    <script>
+        const player = document.getElementById('audio-player');
+        const currentSongLabel = document.getElementById('current-song');
+        const playlistElement = document.getElementById('playlist-element');
+
+        // TO ADD MORE SONGS: literally just add the filename here and put the file in the music/ folder
+        const songs = [
+            "minionrock for dummies.mp3",
+            "scrapped but i love this song.mp3",
+            "masta for now.wav",
+            "dave blunt.wav",
+            "never posted thias anywhere.mp3",
+            "this gonna be on my ep its not done yet.mp3",
+            "gppfoy.wav",
+            "scrapped test from unreleased song.wav",
+            "dritbag normal speed.wav",
+            "this was deadass my preset like 3 years ago look how far weve come.wav",
+            "kay kay.mp3",
+            "this shit is on one of my alts lol.wav",
+            "ma hearttt.flac",            
+            "i was crossed when i made this and was really sad aboutmyex.mp3",
+            "longwert dot com.wav",
+
+
+        ];
+
+        songs.forEach(filename => {
+            const li = document.createElement('li');
+            li.className = 'song-item';
+            li.innerText = filename; 
+            li.onclick = () => playSong('music/' + filename, filename);
+            playlistElement.appendChild(li);
+        });
+
+        function playSong(src, name) {
+            player.src = src;
+            currentSongLabel.innerText = name;
+            player.play();
+            document.body.style.backgroundColor = generateRandomColor();
+        }
+
+        function generateRandomColor() {
+             setTimeout(() => { document.body.style.backgroundColor = "black"; }, 100);
+             return '#' + Math.floor(Math.random()*16777215).toString(16);
+        }
+        
+        console.log("the console");
+    </script>
+    <marquee scrollamount="15" style="color: rgb(255, 0, 0); font-size: 20px;">ladies hmu my discord is longwert</marquee>
+</body>
+</html>

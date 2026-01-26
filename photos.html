@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>picturs</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Plus+Jakarta+Sans:wght@700&display=swap');
+
+        body {
+            background-color: black;
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+            animation: moveTitle 0.0001s infinite alternate;
+        }
+
+        @keyframes moveTitle {
+            from { transform: rotate(-5deg); }
+            to { transform: rotate(5deg); }
+        }
+
+        /* animations stolen from homepage cause im lazy lol*/
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes rainbow {
+            0% { color: #ff0000; }
+            14% { color: #ff7f00; }
+            28% { color: #ffff00; }
+            42% { color: #00ff00; }
+            57% { color: #0000ff; }
+            71% { color: #4b0082; }
+            85% { color: #9400d3; }
+            100% { color: #ff0000; }
+        }
+
+        .viewer-container {
+            background-color: #111;
+            width: 90%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 30px;
+        }
+
+        .photo-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .photo-item {
+            background-color: #333;
+            margin: 10px;
+            padding: 10px;
+            cursor: pointer;
+            border: 2px solid rgb(255, 0, 0);
+        }
+
+        .photo-item:hover {
+            background-color: #555;
+            transform: scale(1.05);
+        }
+
+        #photo-viewer {
+            max-width: 100%;
+            max-height: 500px;
+            margin-top: 20px;
+            border: 2px solid white;
+            display: none;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 50px;
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            font-size: 1.5em;
+            padding: 10px;
+        }
+        
+        .back-link:hover {
+            animation: spin 0.5s linear infinite;
+            /* , rainbow 0.1s infinite; */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>photos</h1>
+    <marquee scrollamount="15" style="color: rgb(255, 0, 0); font-size: 20px;">look at this 📸</marquee>
+
+    <div class="viewer-container">
+        <h2>viewing:</h2>
+        <h3 id="current-photo">nothing</h3>
+        
+        <img id="photo-viewer" src="" alt="Current photo" />
+
+        <ul class="photo-list" id="gallery-element">
+            <!--photos will be inkjected here by JS -->
+        </ul>
+    </div>
+    
+    <br>
+    <a href="index.html" class="back-link">im out</a>
+
+    <script>
+        const viewer = document.getElementById('photo-viewer');
+        const currentPhotoLabel = document.getElementById('current-photo');
+        const galleryElement = document.getElementById('gallery-element');
+
+        // THE PHOTO LIST
+        const photos = [
+            "shh.jpg",
+            "my love.jpg",
+            "IMG_1561.jpg",
+            "me and dawg.png",
+            "chuddle.png",
+            "hmuuuuu.jpg",
+            "sebii.png",
+            "rohoodian.png",
+            "yubinjomkipl,yubinjuomk.jpg",
+            "Screenshot_2025-12-21_161045.png",
+            "korea.jpg"
+        ];
+
+        photos.forEach(filename => {
+            const li = document.createElement('li');
+            li.className = 'photo-item';
+            li.innerText = filename; 
+            li.onclick = () => showPhoto('photos/' + filename, filename);
+            galleryElement.appendChild(li);
+        });
+
+        function showPhoto(src, name) {
+            viewer.src = src;
+            viewer.style.display = 'inline-block';
+            currentPhotoLabel.innerText = name;
+           
+            document.body.style.backgroundColor = generateRandomColor();
+        }
+
+        function generateRandomColor() {
+             setTimeout(() => { document.body.style.backgroundColor = "black"; }, 100);
+             return '#' + Math.floor(Math.random()*16777215).toString(16);
+        }
+        
+        console.log("cheese");
+    </script>
+</body>
+</html>

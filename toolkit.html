@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>meow</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Plus+Jakarta+Sans:wght@700&display=swap');
+
+        body {
+            background-color: black;
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+            animation: moveTitle 0.000000000000000000000000000000001s infinite alternate;
+        }
+
+        @keyframes moveTitle {
+            from { transform: rotate(-5deg); }
+            to { transform: rotate(5deg); }
+        }
+
+        /* for the last tiem i took the animsa from teh hoempage */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes rainbow {
+            0% { color: #ff0000; }
+            14% { color: #ff7f00; }
+            28% { color: #ffff00; }
+            42% { color: #00ff00; }
+            57% { color: #0000ff; }
+            71% { color: #4b0082; }
+            85% { color: #9400d3; }
+            100% { color: #ff0000; }
+        }
+
+        .kits-container {
+            background-color: #111;
+            width: 90%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 30px;
+        }
+
+        .kit-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .kit-item {
+            background-color: #333;
+            margin: 10px;
+            padding: 20px;
+            cursor: pointer;
+            border: 2px solid rgb(255, 0, 0);
+            display: block;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5em;
+        }
+
+        .kit-item:hover {
+            background-color: #555;
+            transform: scale(1.05);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 50px;
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            font-size: 1.5em;
+            padding: 10px;
+        }
+        
+        .back-link:hover {
+            animation: spin 0.5s linear infinite;
+            /* , rainbow 0.1s infinite; */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>kits</h1>
+    <marquee scrollamount="15" style="color: rgb(255, 0, 0); font-size: 20px;">free ram download</marquee>
+
+    <div class="kits-container">
+        <h2>available kits:</h2>
+        
+        <ul class="kit-list" id="kit-element">
+            <!-- KIT swill be injected here by JS -->
+        </ul>
+    </div>
+    
+    <br>
+    <a href="index.html" class="back-link">ok bro</a>
+
+    <script>
+        const kitElement = document.getElementById('kit-element');
+
+        // THE KITS LIST
+        const kits = [
+            "have fun with this lol bunch of BULLSHIT.zip"
+        ];
+
+        kits.forEach(filename => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            
+            a.className = 'kit-item';
+            a.innerText = 'download: ' + filename; 
+            a.href = 'kits/' + filename;
+            a.download = filename;
+            
+            a.onclick = () => {
+                document.body.style.backgroundColor = generateRandomColor();
+            }
+            kitElement.appendChild(a);
+        });
+
+        function generateRandomColor() {
+             setTimeout(() => { document.body.style.backgroundColor = "black"; }, 100);
+             return '#' + Math.floor(Math.random()*16777215).toString(16);
+        }
+        
+        console.log("zip zap zoop");
+    </script>
+</body>
+</html>

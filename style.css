@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Plus+Jakarta+Sans:wght@700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('img/BG.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    /* background-position: center; */
+    color: rgb(255, 255, 255);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+    transition: background-position 0.1s linear;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 200vh;
+}
+
+header {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+h1 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 8rem;
+    margin: 0;
+    text-shadow: 4px 4px 0px #000;
+    cursor: default;
+    animation: breathe 5s infinite ease-in-out; /*comment out this line if u dont want the anim at all*/
+    /* , rainbow 0.2s infinite linear; */
+}
+
+@keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(2); }
+}
+
+@keyframes rainbow {
+    0% { color: #ff0000; }
+    14% { color: #ff7f00; }
+    28% { color: #ffff00; }
+    42% { color: #00ff00; }
+    57% { color: #0000ff; }
+    71% { color: #4b0082; }
+    85% { color: #9400d3; }
+    100% { color: #ff0000; }
+}
+
+h1:hover {
+    /* if u wanna add h1 hover anims */
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.link-item {
+    font-size: 4rem;
+    text-decoration: none;
+    color: rgb(9, 255, 0);
+    /* text-shadow: 3px 3px 0px #000*/
+}
+
+.link-item:nth-child(odd) {
+    transform: rotate(3deg);
+}
+
+.link-item:nth-child(even) {
+    transform: rotate(-3deg);
+}
+
+.link-item:hover {
+    animation: spin 0.5s linear infinite;
+    /* , rainbow 0.1s infinite; */
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
